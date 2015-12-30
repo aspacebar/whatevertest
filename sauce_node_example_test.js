@@ -1,25 +1,13 @@
-var webdriver = require('selenium-webdriver'),
-    username = YOUR_USERNAME,
-    accessKey = YOUR_ACCESS_KEY,
-    driver;
- 
-driver = new webdriver.Builder().
-  withCapabilities({
-    'browserName': 'chrome',
-    'platform': 'Windows XP',
-    'version': '43.0',
-    'username': username,
-    'accessKey': accessKey
-  }).
-  usingServer("http://" + username + ":" + accessKey +
-              "@ondemand.saucelabs.com:80/wd/hub").
-  build();
- 
-driver.get('http://saucelabs.com/test/guinea-pig');
- 
-driver.getTitle().then(function (title) {
-    console.log("title is: " + title);
-    console.log("SauceOnDemandSessionID="+YOUR_SESSION_ID+" job-name="+YOUR_JOB_NAME);
+var client = require('webdriverio').remote({
+    user: process.env.SAUCE_USERNAME,
+    key: process.env.SAUCE_ACCESS_KEY,
+    desiredCapabilities: {
+        browserName: 'chrome'
+    }
 });
  
-driver.quit();
+client
+    .init()
+    .url('http://google.com')
+    .getTitle().then(console.log).then(console.log("SauceOnDemandSessionID="+YOUR_SESSION_ID+" job-name="+YOUR_JOB_NAME))
+    .end();
