@@ -19,7 +19,7 @@ driver.get('http://saucelabs.com/test/guinea-pig');
  
 driver.getTitle().then(function (title) {
     console.log("title is: " + title);
-    console.log(SauceOnDemandSessionID=YOUR_SESSION_ID job-name=YOUR_JOB_NAME);
+    console.log("SauceOnDemandSessionID="+YOUR_SESSION_ID+" job-name="+YOUR_JOB_NAME);
 });
  
 driver.quit();
