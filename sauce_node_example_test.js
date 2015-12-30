@@ -9,5 +9,5 @@ var client = require('webdriverio').remote({
 client
     .init()
     .url('http://google.com')
-    .getTitle().then(console.log).then(console.log("SauceOnDemandSessionID="+YOUR_SESSION_ID+" job-name="+YOUR_JOB_NAME))
+    .getTitle().then(console.log).then(console.log("SauceOnDemandSessionID="+client.sessions.id+" job-name=test"))
     .end();
